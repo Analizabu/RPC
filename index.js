@@ -3,7 +3,7 @@ const { Client } = require("discord.js-selfbot-v13");
 const express = require("express");
 
 const client = new Client();
-const token = process.env.DISCORD_TOKEN;
+const token = process.env.DISCORD_TOKEN || "";
 
 if (!token) {
     console.error("DISCORD_TOKEN is not defined in the .env file.");
@@ -12,9 +12,7 @@ if (!token) {
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.username}`);
-    client.user.setPresence({
-        status: "online"
-    });
+    client.user.setPresence({ status: "online" });
 });
 
 client.on("error", console.error);
@@ -34,6 +32,6 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Web server started on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Web server started on http://0.0.0.0:${PORT}`);
 });
