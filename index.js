@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require('discord.js-selfbot-v13');
+const { Client } = require('discord.js-selfbot-v13');
 
 const token = process.env.TOKEN;
 
@@ -9,11 +9,12 @@ if (!token) {
 
 const client = new Client({
   checkUpdate: false,
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
+  intents: ['GUILDS', 'GUILD_MESSAGES']
 });
 
 client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
+
 });
 
 client.login(token).catch(err => {
